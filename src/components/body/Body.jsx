@@ -41,7 +41,7 @@ const Body = () => {
   return (
     <>
       {definitions.length === 0 ? (
-        <div className="flex flex-col justify-between min-h-[75vh] pt-10 px-2 h-[100vh]">
+        <div className="flex flex-col justify-between pt-10 px-2 h-[90vh]">
           <div>
             <p className="text-[3rem] font-bold color ">
               LEARN NEW WORDS WITH WORDY.....
