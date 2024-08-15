@@ -4,7 +4,7 @@ import { MdCancel } from "react-icons/md";
 import axios from "axios";
 import { useState, useEffect } from "react";
 const Body = () => {
-  const { definitions, word, setDefinitions, audio } = DefState();
+  const { definitions, word, setDefinitions, audio,} = DefState();
   console.log(audio);
   console.log("not found");
   const hearAudio = () => {
@@ -41,7 +41,7 @@ const Body = () => {
   return (
     <>
       {definitions.length === 0 ? (
-        <div className="flex flex-col justify-between pt-10 px-2 h-[90vh]">
+        <div className="flex flex-col justify-between min-h-[75vh] pt-10 px-2 h-[100vh">
           <div>
             <p className="text-[3rem] font-bold color ">
               LEARN NEW WORDS WITH WORDY.....
@@ -63,9 +63,7 @@ const Body = () => {
                   className="text-blue-800 w-[2rem] h-[2rem]"
                 />
 
-                <span className="text-2xl text-[--primary-color]">
-                  /{word}/
-                </span>
+                <span className="text-2xl text-[--primary-color]">/{word}/</span>
               </h1>
               <MdCancel
                 onClick={() => setDefinitions([])}
