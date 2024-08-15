@@ -41,7 +41,7 @@ const Body = () => {
   return (
     <>
       {definitions.length === 0 ? (
-        <div className="flex flex-col justify-between min-h-[75vh] pt-10 px-2 h-[100vh">
+        <div className="flex flex-col justify-between pt-10 px-2 h-[85vh] overflow-auto">
           <div>
             <p className="text-[3rem] font-bold color ">
               LEARN NEW WORDS WITH WORDY.....
@@ -54,7 +54,7 @@ const Body = () => {
           </div>
         </div>
       ) : (
-        <div className="px-1 pt-8  rounded-md  h-screen flex flex-col gap-6">
+        <div className="px-1 pt-8  rounded-md  h-[90%] flex flex-col gap-6">
           <div>
             <div className="flex justify-between">
               <h1 className="flex items-center gap-2 mb-2 ">
@@ -71,7 +71,7 @@ const Body = () => {
               />
             </div>
           </div>
-          <div className="overflow-auto h-[75vh]">
+          <div className="overflow-auto h-full">
             {definitions.map((definition, index) => {
               const num = index + 1;
               return (
