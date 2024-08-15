@@ -26,7 +26,7 @@ const Header = () => {
   };
 
   return (
-    <div>
+    <>
       {!searchSwitch ? (
         <div className="flex justify-between items-center p-2">
           <h1 className="text-2xl font-extrabold text-[--secondary-color]">
@@ -62,7 +62,7 @@ const Header = () => {
           />
         </form>
       )}
-    </div>
+    </>
   );
 };
 
