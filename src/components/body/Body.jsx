@@ -54,7 +54,7 @@ const Body = () => {
           </div>
         </div>
       ) : (
-        <div className="px-1 pt-8 p-2 rounded-md  min-h-[50svh] flex flex-col gap-6">
+        <div className="px-1 pt-8  rounded-md  h-screen flex flex-col gap-6">
           <div>
             <div className="flex justify-between">
               <h1 className="flex items-center gap-2 mb-2 ">
@@ -71,7 +71,7 @@ const Body = () => {
               />
             </div>
           </div>
-          <div className="overflow-auto">
+          <div className="overflow-auto h-[75vh]">
             {definitions.map((definition, index) => {
               const num = index + 1;
               return (
