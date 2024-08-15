@@ -4,8 +4,9 @@ import { MdCancel } from "react-icons/md";
 import axios from "axios";
 import { useState, useEffect } from "react";
 const Body = () => {
-  const { definitions, word, setDefinitions, audio } = DefState();
+  const { definitions, word, setDefinitions, audio,} = DefState();
   console.log(audio);
+  console.log("not found");
   const hearAudio = () => {
     audio.forEach((sound) => {
       const audioElement = new Audio(sound);
@@ -15,7 +16,7 @@ const Body = () => {
   // quotes
   const [quote, setQuote] = useState("");
   const [quoteId, setQuoteId] = useState("");
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
   const fetchData = () => {
     try {
       axios.get("https://api.adviceslip.com/advice").then((response) => {
@@ -48,8 +49,8 @@ const Body = () => {
           </div>
 
           <div className="w-full text-center  gap-5 py-3 flex place-items-center px-4 font-bold  rounded-md flex-col">
-            <p className="text-xl">Quotes #{quoteId}</p>
-            <p className="text-xl">{quote}</p>
+            <p className="text-xl text-[--primary-color]">Quotes #{quoteId}</p>
+            <p className="text-xl text-[--primary-color]">{quote}</p>
           </div>
         </div>
       ) : (
@@ -62,11 +63,11 @@ const Body = () => {
                   className="text-blue-800 w-[2rem] h-[2rem]"
                 />
 
-                <span className="text-2xl">/{word}/</span>
+                <span className="text-2xl text-[--primary-color]">/{word}/</span>
               </h1>
               <MdCancel
                 onClick={() => setDefinitions([])}
-                className="w-[2rem] h-[2rem] mr-2"
+                className="w-[2rem] h-[2rem] mr-2 text-[--primary-color]"
               />
             </div>
           </div>
@@ -75,8 +76,8 @@ const Body = () => {
               const num = index + 1;
               return (
                 <div key={index} className="flex  gap-2 text-md mb-8">
-                  <span className="">{num}.</span>
-                  <p className="">{definition}</p>
+                  <span className="text-[--primary-color]">{num}.</span>
+                  <p className="text-[--primary-color]">{definition}</p>
                 </div>
               );
             })}

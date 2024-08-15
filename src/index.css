@@ -2,16 +2,38 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+:root {
+  --primary-color: black;
+  --bg-color: "white";
+  --secondary-color: #180161;
+}
+[data-theme="dark"] {
+  --primary-color: #fff;
+  --bg-color: black;
+  --secondary-color: #fff;
+}
+
+/* .for_light_theme {
+  --primary-color: "black";
+  --secondarycolor: #180161;
+  --bg-color: #fff;
+} */
+
+/* .for_Dark_theme {
+  --primary-color: #fff;
+  --secondarycolor: #180161;
+  --bg-color: "black";
+} */
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  transition: all 0.3s ease-in-out;
 }
 
 body {
   font-family: "Poppins", sans-serif;
-
 }
 
 .color {
