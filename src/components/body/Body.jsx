@@ -2,15 +2,36 @@ import { AiOutlineSound } from "react-icons/ai";
 import { DefState } from "../../context/Context";
 import { MdCancel } from "react-icons/md";
 import axios from "axios";
+import { PropagateLoader } from "react-spinners";
 import { useState, useEffect } from "react";
+import { RingLoader } from "react-spinners";
 const Body = () => {
-  const { definitions, word, setDefinitions, audio,} = DefState();
+  const {
+    definitions,
+    word,
+    setDefinitions,
+    audio,
+    loading,
+    setLoading,
+    setSearchSwitch,
+    voiceLoad,
+    setVoiceLoad,
+  } = DefState();
+
   console.log(audio);
   console.log("not found");
+  const cancel = () => {
+    setDefinitions([]);
+    setLoading(false);
+    setSearchSwitch(false);
+  };
   const hearAudio = () => {
+    setVoiceLoad(false);
     audio.forEach((sound) => {
       const audioElement = new Audio(sound);
       audioElement.play();
+      setVoiceLoad(false)
+      
     });
   };
   // quotes
@@ -23,7 +44,7 @@ const Body = () => {
         console.log(response.data);
         setQuote(response.data.slip.advice);
         setQuoteId(response.data.slip.id);
-
+        setLoading(false);
       });
     } catch (error) {
       console.log(error);
@@ -44,7 +65,13 @@ const Body = () => {
         <div className="flex flex-col justify-between pt-10 px-2 h-[80%] overflow-hidden">
           <div>
             <p className="text-[3rem] font-bold color ">
-              LEARN NEW WORDS WITH WORDY.....
+              {!loading ? (
+                "LEARN NEW WORDS WITH WORDY....."
+              ) : (
+                <div className="w-[100%] h-[100vh] flex justify-center items-center">
+                  <PropagateLoader color={`var(--primary-color)`} />
+                </div>
+              )}
             </p>
           </div>
 
@@ -58,16 +85,27 @@ const Body = () => {
           <div>
             <div className="flex justify-between">
               <h1 className="flex items-center gap-2 mb-2 ">
-                <AiOutlineSound
-                  onClick={hearAudio}
-                  className="text-blue-800 w-[2rem] h-[2rem]"
-                />
+                <div className="relative">
+                  <AiOutlineSound
+                    onClick={hearAudio}
+                    className="text-blue-800 w-[2rem] h-[2rem] "
+                  />
+                  { voiceLoad ? (
+                    <div className="absolute top-0">
+                      <RingLoader color={`var(--primary-color)`} size={33} />
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                </div>
 
-                <span className="text-2xl text-[--primary-color]">/{word}/</span>
+                <span className="text-2xl text-[--primary-color]">
+                  /{word}/
+                </span>
               </h1>
               <MdCancel
-                onClick={() => setDefinitions([])}
-                className="w-[2rem] h-[2rem] mr-2 text-[--primary-color]"
+                onClick={cancel}
+                className="w-[2rem] h-[2rem] mr-2 text-[--primary-color] cursor-pointer"
               />
             </div>
           </div>

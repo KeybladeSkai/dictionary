@@ -8,6 +8,9 @@ const DefProvider = ({ children }) => {
   const [audio, setAudio] = useState("");
   const [error, setError] = useState("");
   const [input, setInput] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [searchSwitch, setSearchSwitch] = useState(false);
+  const [voiceLoad, setVoiceLoad] = useState(false);
   const define = [];
   const defineAudio = [];
 
@@ -17,6 +20,7 @@ const DefProvider = ({ children }) => {
     setInput("");
 
     try {
+      setLoading(true);
       // const baseUrl = "https://api.dictionaryapi.dev/api/v2/entries/en";
       axios
         .get(`https://api.dictionaryapi.dev/api/v2/entries/en/${input}`, input)
@@ -25,7 +29,6 @@ const DefProvider = ({ children }) => {
           const item = elementAudio.find((item) => item.audio != "");
           if (item) {
             item.audio !== "" && defineAudio.push(item.audio);
-
             setAudio(defineAudio);
           }
           const elementDef = response.data[0].meanings[0].definitions;
@@ -36,8 +39,8 @@ const DefProvider = ({ children }) => {
           });
         });
       // console.log(response);
-    } catch (error) {
-      console.log(error);
+    } catch {
+      console.log("Word doesn't exist");
     }
   };
 
@@ -55,6 +58,12 @@ const DefProvider = ({ children }) => {
         setDefinitions,
         setInput,
         input,
+        loading,
+        setLoading,
+        searchSwitch,
+        setSearchSwitch,
+        voiceLoad,
+        setVoiceLoad,
       }}
     >
       {children}

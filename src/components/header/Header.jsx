@@ -2,27 +2,26 @@ import "../header/header.css";
 import { CiSearch } from "react-icons/ci";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { useState } from "react";
-import { FaDiceFive } from "react-icons/fa";
+
 import { DefState } from "../../context/Context";
 import Theme from "../theme/Theme";
 const Header = () => {
-  const [searchSwitch, setSearchSwitch] = useState(false);
-  const { handleSubmit, setInput, input } = DefState();
-  // const words = ["Empathy", "love", "bad", "sex", "Holy", "Justice"];
-
-  // const random = () => {
-  //   const randomWords = words[Math.floor(Math.random() * words.length)];
-  //   setInput(randomWords);
-  //   handleSubmit();
-  // };
+  const {
+    handleSubmit,
+    setInput,
+    input,
+    setLoading,
+    searchSwitch,
+    setSearchSwitch,
+  } = DefState();
 
   const handleWord = (e) => {
     setInput(e.target.value);
-    // console.log(input);
   };
 
   const handleSearchSwitch = () => {
     setSearchSwitch((prev) => !prev);
+    setLoading(false);
   };
 
   return (
@@ -33,13 +32,10 @@ const Header = () => {
             WORDY
           </h1>
           <div className="flex items-center justify-center">
-            <FaDiceFive className="w-[2rem] h-[2rem] rounded-full mr-4 text-[--primary-color]" />
-
-            {/* <MdDarkMode className="w-[2rem] h-[2rem] rounded-full mr-4  color" /> */}
             <Theme />
             <CiSearch
               onClick={handleSearchSwitch}
-              className="w-[2rem] h-[2rem] rounded-full text-[--primary-color]"
+              className="w-[2rem] h-[2rem] rounded-full text-[--primary-color] cursor-pointer"
             />
           </div>
         </div>
